@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  seed_date: 2018-04-04 17:44:31
+  harvest_date: 2018-04-04 17:44:31
+  germination_days: 1
+  propagation_days: 1
+  production_days: 1
+  expected_harvest_lbs: 1
+  actual_harvest_lbs: 1
+  harvested: false
+
+two:
+  seed_date: 2018-04-04 17:44:31
+  harvest_date: 2018-04-04 17:44:31
+  germination_days: 1
+  propagation_days: 1
+  production_days: 1
+  expected_harvest_lbs: 1
+  actual_harvest_lbs: 1
+  harvested: false
