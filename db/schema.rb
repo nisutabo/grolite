@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_04_223920) do
+ActiveRecord::Schema.define(version: 2018_04_17_140303) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,14 +21,16 @@ ActiveRecord::Schema.define(version: 2018_04_04_223920) do
     t.string "name"
     t.string "scientific_name"
     t.string "crop_group"
-    t.integer "temp_day"
     t.integer "temp_night"
-    t.integer "humidity"
-    t.integer "ph"
-    t.integer "ec"
     t.integer "dli"
     t.integer "sun_hours"
     t.integer "dth"
+    t.integer "temp_day"
+    t.integer "maxhumidity"
+    t.integer "minhumidity"
+    t.float "ph"
+    t.float "ec"
+    t.integer "market_value"
   end
 
   create_table "groups", force: :cascade do |t|
@@ -44,6 +46,24 @@ ActiveRecord::Schema.define(version: 2018_04_04_223920) do
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.integer "crop_id"
+    t.string "location"
+    t.string "crop_name"
+    t.string "crop_group"
+    t.string "scientific_name"
+    t.string "status"
+    t.integer "trays"
+    t.datetime "propagation_date"
+    t.datetime "production_date"
+  end
+
+  create_table "readings", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.integer "group_id"
+    t.float "ph"
+    t.float "ec"
+    t.datetime "date"
   end
 
   create_table "tasks", force: :cascade do |t|
@@ -52,12 +72,17 @@ ActiveRecord::Schema.define(version: 2018_04_04_223920) do
     t.integer "crop_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "content"
+    t.boolean "done", default: false
+    t.datetime "due"
   end
 
   create_table "users", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"
+    t.string "username"
+    t.string "password_digest"
   end
 
 end
