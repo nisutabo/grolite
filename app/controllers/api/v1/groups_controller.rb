@@ -21,13 +21,15 @@ class Api::V1::GroupsController < ApplicationController
     crop_name = @crop.name
     crop_group = @crop.crop_group
     scientific_name = @crop.scientific_name
+    @user = User.find(params[:user_id].to_i)
+    location = @user.location
 
     @group = Group.new(crop_id: params[:crop_id], crop_name: crop_name, crop_group: crop_group,
       scientific_name: scientific_name, user_id: params[:user_id], seed_date: seed_date,
-      propagation_date: production_date, production_date: production_date, harvest_date: harvest_date,
+      propagation_date: propagation_date, production_date: production_date, harvest_date: harvest_date,
       germination_days: params[:germination_days].to_i, propagation_days: params[:propagation_days].to_i,
       production_days: params[:production_days].to_i, harvested: false, expected_harvest_lbs: params[:expected_harvest_lbs],
-      location: params[:location], trays: params[:trays])
+      location: location, trays: params[:trays])
     if @group.save
       return render json: @group
     else
@@ -37,8 +39,15 @@ class Api::V1::GroupsController < ApplicationController
 
   def update
     @group = Group.find(params[:id])
+    day = 86400
+    seed_date = @group.seed_date
+    propagation_date = seed_date + (day * params[:germination_days].to_i)
+    production_date = propagation_date + (day * params[:propagation_days].to_i)
+    harvest_date = production_date + (day * params[:production_days].to_i)
 
-    @group.update(group_params)
+    @group.update(propagation_date: propagation_date, production_date: production_date, harvest_date: harvest_date,
+      germination_days: params[:germination_days].to_i, propagation_days: params[:propagation_days].to_i,
+      production_days: params[:production_days].to_i)
     if @group.save
       render json: @group
     else
@@ -99,7 +108,7 @@ class Api::V1::GroupsController < ApplicationController
       current_time = JSON.parse(current.body)['current_observation']['observation_time_rfc822'].split(' ')[4]
       result[:current_time] = current_time
       result[:current_temp] = current_temp
-      result[:current_humidity] = current_humidity
+      result[:current_humidity] = current_humidity.split('%')[0..-1].join('')
 
       astronomy = Excon.get("http://api.wunderground.com/api/49d0e7851426e4b9/astronomy/q/#{state}/#{city}.json")
       sunrise = JSON.parse(astronomy.body)['moon_phase']['sunrise']['hour'].to_i

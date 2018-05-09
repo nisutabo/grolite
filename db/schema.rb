@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_17_140303) do
+ActiveRecord::Schema.define(version: 2018_05_07_114441) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,9 @@ ActiveRecord::Schema.define(version: 2018_04_17_140303) do
     t.float "ph"
     t.float "ec"
     t.integer "market_value"
+    t.integer "temp_day_min"
+    t.integer "temp_night_min"
+    t.integer "dli_min"
   end
 
   create_table "groups", force: :cascade do |t|
@@ -46,7 +49,6 @@ ActiveRecord::Schema.define(version: 2018_04_17_140303) do
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.integer "crop_id"
-    t.string "location"
     t.string "crop_name"
     t.string "crop_group"
     t.string "scientific_name"
@@ -54,6 +56,7 @@ ActiveRecord::Schema.define(version: 2018_04_17_140303) do
     t.integer "trays"
     t.datetime "propagation_date"
     t.datetime "production_date"
+    t.string "location"
   end
 
   create_table "readings", force: :cascade do |t|
@@ -83,6 +86,7 @@ ActiveRecord::Schema.define(version: 2018_04_17_140303) do
     t.string "name"
     t.string "username"
     t.string "password_digest"
+    t.string "location"
   end
 
 end

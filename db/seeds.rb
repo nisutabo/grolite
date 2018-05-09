@@ -5,12 +5,13 @@ day = 86400
 today = Time.now
 location = 'New York, NY'
 
+@user = User.create(username: 'one', password: '1', location: 'New York, NY')
 
 
-@strawberry =  Crop.create(name: 'Strawberry (June-Bearing)', scientific_name: 'Fragaria Ananassa', crop_group: 'Fruit', temp_day: 71, temp_night: 52, maxhumidity: 75, minhumidity: 65, ec: 1.5, ph: 5.8, sun_hours: 12, dli: 29, dth: 105, market_value: 2)
+@strawberry =  Crop.create(name: 'Strawberry (June-Bearing)', scientific_name: 'Fragaria Ananassa', crop_group: 'Fruit', temp_day: 75, temp_day_min: 68, temp_night: 59, temp_night_min: 50, maxhumidity: 75, minhumidity: 65, ec: 1.5, ph: 5.8, sun_hours: 12, dli: 28, dli_min: 20, dth: 105, market_value: 2)
 
   10.times do
-    number = Faker::Number.between(1,29)
+    number = Faker::Number.between(1,7)
     seed_date = today - (day * number)
     germination_days = 21
     propagation_days = 42
@@ -25,13 +26,13 @@ location = 'New York, NY'
     crop_name = @strawberry.name
     crop_group = @strawberry.crop_group
     scientific_name = @strawberry.scientific_name
-    @group = Group.create(seed_date: seed_date, propagation_date: propagation_date, production_date: production_date, harvest_date: harvest_date, germination_days: germination_days, propagation_days: propagation_days, production_days: production_days, expected_harvest_lbs: expected_harvest_lbs, harvested: harvested, crop_id: crop_id, location: location, crop_name: crop_name, crop_group: crop_group, scientific_name: scientific_name, trays: trays, user_id: 1)
+    @group = Group.create(seed_date: seed_date, propagation_date: propagation_date, production_date: production_date, harvest_date: harvest_date, germination_days: germination_days, propagation_days: propagation_days, production_days: production_days, expected_harvest_lbs: expected_harvest_lbs, harvested: harvested, crop_id: crop_id, location: @user.location, crop_name: crop_name, crop_group: crop_group, scientific_name: scientific_name, trays: trays, user_id: 1)
         i = day
         ((today - seed_date)/day).round(0).times do
-        a = Faker::Number.between(1,3)
+        a = Faker::Number.between(1,4)
         b = Faker::Number.decimal(0,1).to_f
         ec = a + b
-        c = Faker::Number.between(4,6)
+        c = Faker::Number.between(2,7)
         d = Faker::Number.decimal(0,1).to_f
         ph = c + d
         date = seed_date + i
@@ -54,9 +55,9 @@ location = 'New York, NY'
   end
 
 
-@basil = Crop.create(name: 'Basil (Genovese)', scientific_name: 'Ocimum Basilicum', crop_group: 'Herb', temp_day: 80, temp_night: 65, maxhumidity: 65, minhumidity: 40, ec: 1.5, ph: 6.5, sun_hours: 8, dli: 15, dth: 40, market_value: 4)
+@basil = Crop.create(name: 'Basil (Genovese)', scientific_name: 'Ocimum Basilicum', crop_group: 'Herb', temp_day: 80, temp_day_min: 60, temp_night: 65, temp_night_min: 52, maxhumidity: 65, minhumidity: 40, ec: 1.5, ph: 6.5, sun_hours: 8, dli: 16, dli_min: 10, dth: 40, market_value: 4)
   5.times do
-    number = Faker::Number.between(1,29)
+    number = Faker::Number.between(1,40)
     seed_date = today - (day * number)
     germination_days = 10
     propagation_days = 15
@@ -71,7 +72,7 @@ location = 'New York, NY'
     crop_name = @basil.name
     crop_group = @basil.crop_group
     scientific_name = @basil.scientific_name
-    @group = Group.create(seed_date: seed_date, propagation_date: propagation_date, production_date: production_date, harvest_date: harvest_date, germination_days: germination_days, propagation_days: propagation_days, production_days: production_days, expected_harvest_lbs: expected_harvest_lbs, harvested: harvested, crop_id: crop_id, location: location, crop_name: crop_name, crop_group: crop_group, scientific_name: scientific_name, trays: trays, user_id: 1)
+    @group = Group.create(seed_date: seed_date, propagation_date: propagation_date, production_date: production_date, harvest_date: harvest_date, germination_days: germination_days, propagation_days: propagation_days, production_days: production_days, expected_harvest_lbs: expected_harvest_lbs, harvested: harvested, crop_id: crop_id, location: @user.location, crop_name: crop_name, crop_group: crop_group, scientific_name: scientific_name, trays: trays, user_id: 1)
       i = day
       ((today - seed_date)/day).round(0).times do
       a = Faker::Number.between(1,3)
@@ -100,9 +101,9 @@ location = 'New York, NY'
   end
 
 
-@cherry_tomato = Crop.create(name: 'Cherry Tomato', scientific_name: 'Solanum Lycopersicum', crop_group: 'Fruit', temp_day: 79, temp_night: 61, maxhumidity: 80, minhumidity: 65, ec: 3.0, ph: 6.0, sun_hours: 12, dli: 20, dth: 70, market_value: 3)
+@cherry_tomato = Crop.create(name: 'Cherry Tomato', scientific_name: 'Solanum Lycopersicum', crop_group: 'Fruit', temp_day: 85, temp_day_min: 70, temp_night: 68, temp_night_min: 59, maxhumidity: 80, minhumidity: 65, ec: 3.0, ph: 6.0, sun_hours: 12, dli: 30, dli_min: 20, dth: 70, market_value: 3)
   5.times do
-    number = Faker::Number.between(1,29)
+    number = Faker::Number.between(1,7)
     seed_date = today - (day * number)
     germination_days = 10
     propagation_days = 30
@@ -117,7 +118,7 @@ location = 'New York, NY'
     crop_name = @cherry_tomato.name
     crop_group = @cherry_tomato.crop_group
     scientific_name = @cherry_tomato.scientific_name
-    @group = Group.create(seed_date: seed_date, propagation_date: propagation_date, production_date: production_date, harvest_date: harvest_date, germination_days: germination_days, propagation_days: propagation_days, production_days: production_days, expected_harvest_lbs: expected_harvest_lbs, harvested: harvested, crop_id: crop_id, location: location, crop_name: crop_name, crop_group: crop_group, scientific_name: scientific_name, trays: trays, user_id: 1)
+    @group = Group.create(seed_date: seed_date, propagation_date: propagation_date, production_date: production_date, harvest_date: harvest_date, germination_days: germination_days, propagation_days: propagation_days, production_days: production_days, expected_harvest_lbs: expected_harvest_lbs, harvested: harvested, crop_id: crop_id, location: @user.location, crop_name: crop_name, crop_group: crop_group, scientific_name: scientific_name, trays: trays, user_id: 1)
       i = day
       ((today - seed_date)/day).round(0).times do
       a = Faker::Number.between(1,3)

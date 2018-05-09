@@ -7,7 +7,7 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def create
-    @user = User.new(username: params[:username], password: params[:password])
+    @user = User.new(username: params[:username], password: params[:password], location: params[:location])
     @groups = @user.groups
     @totalvalue = @groups.map{|g| g.crop.market_value * g.expected_harvest_lbs}.inject(:+)
     @crops = Crop.all
