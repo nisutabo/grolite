@@ -11,7 +11,7 @@ location = 'New York, NY'
 @strawberry =  Crop.create(name: 'Strawberry (June-Bearing)', scientific_name: 'Fragaria Ananassa', crop_group: 'Fruit', temp_day: 75, temp_day_min: 68, temp_night: 59, temp_night_min: 50, maxhumidity: 75, minhumidity: 65, ec: 1.5, ph: 5.8, sun_hours: 12, dli: 28, dli_min: 20, dth: 105, market_value: 2)
 
   10.times do
-    number = Faker::Number.between(1,7)
+    number = Faker::Number.between(1,90)
     seed_date = today - (day * number)
     germination_days = 21
     propagation_days = 42
@@ -45,19 +45,16 @@ location = 'New York, NY'
       Task.create(group_id: @group.id, crop_id: crop_id, due: seed_date, content: 'Scan group for any signs of disease')
       Task.create(group_id: @group.id, crop_id: crop_id, due: seed_date, content: 'Scan group for any signs of pests')
       Task.create(group_id: @group.id, crop_id: crop_id, due: (seed_date + random_day), content: 'Apply M-PEDE based on Integrated Pest Management guidelines')
-      Task.create(group_id: @group.id, crop_id: crop_id, due: propagation_date, content: 'Move trays to propagation zone')
       Task.create(group_id: @group.id, crop_id: crop_id, due: propagation_date, content: 'Collect pH/EC readings')
       Task.create(group_id: @group.id, crop_id: crop_id, due: (propagation_date + random_day), content: 'Mix nutrients')
-      Task.create(group_id: @group.id, crop_id: crop_id, due: (production_date), content: 'Move trays to production zone')
       Task.create(group_id: @group.id, crop_id: crop_id, due: production_date, content: 'Collect pH/EC readings')
-      Task.create(group_id: @group.id, crop_id: crop_id, due: harvest_date, content: 'Harvest Group')
 
   end
 
 
-@basil = Crop.create(name: 'Basil (Genovese)', scientific_name: 'Ocimum Basilicum', crop_group: 'Herb', temp_day: 80, temp_day_min: 60, temp_night: 65, temp_night_min: 52, maxhumidity: 65, minhumidity: 40, ec: 1.5, ph: 6.5, sun_hours: 8, dli: 16, dli_min: 10, dth: 40, market_value: 4)
+@basil = Crop.create(name: 'Basil (Genovese)', scientific_name: 'Ocimum Basilicum', crop_group: 'Herb', temp_day: 80, temp_day_min: 60, temp_night: 65, temp_night_min: 52, maxhumidity: 65, minhumidity: 40, ec: 2.5, ph: 5.5, sun_hours: 8, dli: 16, dli_min: 10, dth: 40, market_value: 4)
   5.times do
-    number = Faker::Number.between(1,40)
+    number = Faker::Number.between(1,15)
     seed_date = today - (day * number)
     germination_days = 10
     propagation_days = 15
@@ -91,19 +88,16 @@ location = 'New York, NY'
     Task.create(group_id: @group.id, crop_id: crop_id, due: seed_date, content: 'Scan group for any signs of disease')
     Task.create(group_id: @group.id, crop_id: crop_id, due: seed_date, content: 'Scan group for any signs of pests')
     Task.create(group_id: @group.id, crop_id: crop_id, due: (seed_date + random_day), content: 'Apply M-PEDE based on Integrated Pest Management guidelines')
-    Task.create(group_id: @group.id, crop_id: crop_id, due: propagation_date, content: 'Move trays to propagation zone')
     Task.create(group_id: @group.id, crop_id: crop_id, due: propagation_date, content: 'Collect pH/EC readings')
     Task.create(group_id: @group.id, crop_id: crop_id, due: (propagation_date + random_day), content: 'Mix nutrients')
-    Task.create(group_id: @group.id, crop_id: crop_id, due: (production_date), content: 'Move trays to production zone')
     Task.create(group_id: @group.id, crop_id: crop_id, due: production_date, content: 'Collect pH/EC readings')
-    Task.create(group_id: @group.id, crop_id: crop_id, due: harvest_date, content: 'Harvest Group')
 
   end
 
 
 @cherry_tomato = Crop.create(name: 'Cherry Tomato', scientific_name: 'Solanum Lycopersicum', crop_group: 'Fruit', temp_day: 85, temp_day_min: 70, temp_night: 68, temp_night_min: 59, maxhumidity: 80, minhumidity: 65, ec: 3.0, ph: 6.0, sun_hours: 12, dli: 30, dli_min: 20, dth: 70, market_value: 3)
   5.times do
-    number = Faker::Number.between(1,7)
+    number = Faker::Number.between(1,55)
     seed_date = today - (day * number)
     germination_days = 10
     propagation_days = 30
@@ -137,11 +131,8 @@ location = 'New York, NY'
     Task.create(group_id: @group.id, crop_id: crop_id, due: seed_date, content: 'Scan group for any signs of disease')
     Task.create(group_id: @group.id, crop_id: crop_id, due: seed_date, content: 'Scan group for any signs of pests')
     Task.create(group_id: @group.id, crop_id: crop_id, due: (seed_date + random_day), content: 'Apply M-PEDE based on Integrated Pest Management guidelines')
-    Task.create(group_id: @group.id, crop_id: crop_id, due: propagation_date, content: 'Move trays to propagation zone')
     Task.create(group_id: @group.id, crop_id: crop_id, due: propagation_date, content: 'Collect pH/EC readings')
     Task.create(group_id: @group.id, crop_id: crop_id, due: (propagation_date + random_day), content: 'Mix nutrients')
-    Task.create(group_id: @group.id, crop_id: crop_id, due: (production_date), content: 'Move trays to production zone')
     Task.create(group_id: @group.id, crop_id: crop_id, due: production_date, content: 'Collect pH/EC readings')
-    Task.create(group_id: @group.id, crop_id: crop_id, due: harvest_date, content: 'Harvest Group')
 
   end
