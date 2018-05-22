@@ -35,7 +35,7 @@ class Api::V1::CropsController < ApplicationController
   def destroy
     @crop = Crop.find(params[:id])
     @crop.destroy
-    @croups = Croup.all
+    @crops = Croup.all
     render json: @crops
   end
 
