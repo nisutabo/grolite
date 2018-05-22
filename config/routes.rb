@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :tasks
       resources :groups, only: [:index, :show, :create, :update, :destroy]
-      resources :crops, only: [:index, :show, :create, :update]
+      resources :crops, only: [:index, :show, :create, :update, :destroy]
       resources :readings, only: [:index, :show, :create, :destroy]
       resources :users, only: [:index, :show, :create, :update]
       post '/signup', to: 'users#create'
