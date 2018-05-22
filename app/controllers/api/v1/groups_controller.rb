@@ -82,7 +82,7 @@ class Api::V1::GroupsController < ApplicationController
     until seed_date.strftime("%Y/%m/%d") == today.strftime("%Y/%m/%d")
 
       search_date = seed_date.year.to_s + (sprintf '%02d', seed_date.month).to_s + (sprintf '%02d', seed_date.day).to_s
-      history = Excon.get("http://api.wunderground.com/api/49d0e7851426e4b9/history_#{search_date}/q/#{state}/#{city}.json")
+      history = Excon.get("https://api.wunderground.com/api/49d0e7851426e4b9/history_#{search_date}/q/#{state}/#{city}.json")
       dailysummary = JSON.parse(history.body)['history']['dailysummary'][0]
       result[:maxtempf] << dailysummary['maxtempi']
       result[:mintempf] << dailysummary['mintempi']
@@ -93,7 +93,7 @@ class Api::V1::GroupsController < ApplicationController
 
     end
 
-      hourly = Excon.get("http://api.wunderground.com/api/49d0e7851426e4b9/hourly/q/#{state}/#{city}.json")
+      hourly = Excon.get("https://api.wunderground.com/api/49d0e7851426e4b9/hourly/q/#{state}/#{city}.json")
       today_tempf = JSON.parse(hourly.body)['hourly_forecast'].map{|m| m['temp']['english']}
       today_humidity = JSON.parse(hourly.body)['hourly_forecast'].map{|m| m['humidity']}
       today_hours = JSON.parse(hourly.body)['hourly_forecast'].map{|m| m['FCTTIME']['hour']}
@@ -102,7 +102,7 @@ class Api::V1::GroupsController < ApplicationController
       result[:today_hours] = today_hours
 
 
-      current = Excon.get("http://api.wunderground.com/api/49d0e7851426e4b9/conditions/q/#{state}/#{city}.json")
+      current = Excon.get("https://api.wunderground.com/api/49d0e7851426e4b9/conditions/q/#{state}/#{city}.json")
       current_temp = JSON.parse(current.body)['current_observation']['temp_f']
       current_humidity = JSON.parse(current.body)['current_observation']['relative_humidity']
       current_time = JSON.parse(current.body)['current_observation']['observation_time_rfc822'].split(' ')[4]
@@ -110,7 +110,7 @@ class Api::V1::GroupsController < ApplicationController
       result[:current_temp] = current_temp
       result[:current_humidity] = current_humidity.split('%')[0..-1].join('')
 
-      astronomy = Excon.get("http://api.wunderground.com/api/49d0e7851426e4b9/astronomy/q/#{state}/#{city}.json")
+      astronomy = Excon.get("https://api.wunderground.com/api/49d0e7851426e4b9/astronomy/q/#{state}/#{city}.json")
       sunrise = JSON.parse(astronomy.body)['moon_phase']['sunrise']['hour'].to_i
       sunset = JSON.parse(astronomy.body)['moon_phase']['sunset']['hour'].to_i
       sun_hours = sunset - sunrise

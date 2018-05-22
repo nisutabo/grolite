@@ -5,7 +5,7 @@ require 'faker'
 
 def get_weather_data #args will be seed_date, state and city
   day = 86400
-  seed_date = (Time.now)
+  seed_date = (Time.now - (2 * day))
   today = Time.now
   result = {'maxhumidity': [], 'minhumidity': [], 'maxtempf': [], 'mintempf': [], 'meantempf': []}
 
