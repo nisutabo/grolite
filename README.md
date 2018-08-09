@@ -1,24 +1,4 @@
-# README
+# GROLITE
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Grolite is a greenhouse management web-application that helps farmers collect, display and track all weather and crop-related data for ensuring that their crops are grown under the most optimal conditions.
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
